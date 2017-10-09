@@ -19,6 +19,11 @@ Rough Design
 
 '''
 
+Users would like to better understand their customer sentiments on an on-going basis. They therefore would like to
+regularly conduct satisfaction surveys (e.g. NPS) using Qualtrics. They would like to avoid the manual process of 
+preparing a contact (e.g. mailing) list, importing it into Qualtrics and then scheduling a survey to be distributed
+on a routine basis (daily/weekly/quarterly).
+
 '''
 
 # Bobby setups their User id token in the Qualtrics Admin page by following the instructions here:
