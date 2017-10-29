@@ -8,8 +8,8 @@ Rough Design
     3.  a) Survey Object <- data center, survey ID
         b) Mailing List Object <- data center, library id (group id), mailing list name, category name (folder name) *optional*
         c) Message Object <- message id, survey object, mailing list object
-        d) Contact list
-
+        d) Importable Contact list
+        e) Survey distribution object
 '''
 
 
@@ -29,12 +29,12 @@ on a routine basis (daily/weekly/quarterly).
 # Bobby setups their User id token in the Qualtrics Admin page by following the instructions here:
 # https://api.qualtrics.com/docs/finding-qualtrics-ids
 
-# Bobby calls a helper function to input their Qualtrics API token into a 'token.ini' file
-# input()
+# Bobby is going to create a Qualtrics Account object by specifying a data center and API token.
 
-# Bobby creates a mailing list object by specifying the: data center, library id, mailing list name, category name *optional*
+# Bobby goes to the Qualtrics.com Admin page to identify the Qualtrics ID associated with their library/group they want to work in
+
+# Bobby creates a new mailing list by specifying the Qualtrics Account object, mailing list name, category name *optional*
 # The mailing list object then makes an API call to get its mailing list id
-# The mailing list object should also check if another mailing list object with the same name already exists
 
 # Bobbby then imports their contact list into the mailing list object
     # The mailing list object needs to be a JSON object or a JSON file

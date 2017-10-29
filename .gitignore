@@ -103,3 +103,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+token.ini
+
+test_config.py
+config.py
