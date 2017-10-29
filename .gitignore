@@ -1,5 +1,6 @@
 .idea/
 token.ini
+test_config.py
 
 # Everything below was added by GitHub
 
@@ -104,8 +105,3 @@ ENV/
 
 # mypy
 .mypy_cache/
-
-token.ini
-
-test_config.py
-config.py

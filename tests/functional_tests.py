@@ -1,4 +1,10 @@
 '''
+Users would like to better understand their customer sentiments on an on-going
+basis. They therefore would like to regularly conduct satisfaction surveys (e.g.
+NPS) using Qualtrics. They would like to avoid the manual process of preparing a
+contact (e.g. mailing) list, importing it into Qualtrics and then scheduling a
+survey to be distributed on a routine basis (daily/weekly/quarterly).
+
 Rough Design
 
     1. hard coded config file with things like API urls
@@ -6,46 +12,70 @@ Rough Design
     2. Files that only contain user parameters, like API token
 
     3.  a) Survey Object <- data center, survey ID
-        b) Mailing List Object <- data center, library id (group id), mailing list name, category name (folder name) *optional*
+        b) Mailing List Object <- data center, library id (group id),
+           mailing list name, category name (folder name) *optional*
         c) Message Object <- message id, survey object, mailing list object
         d) Importable Contact list
         e) Survey distribution object
 '''
 
+from unittest import TestCase
+
+from tests import test_config
+from qualtrics_account import QualtricsAccount
+from qualtrics_mailing_list import QualtricsMailingList
 
 
+class ScheduleDistributionTests(TestCase):
 
-# BOBBY'S EXPERIENCE
+    def test_schedule_distribution_with_csv_import(self):
 
-'''
+        # BOBBY'S EXPERIENCE
 
-Users would like to better understand their customer sentiments on an on-going basis. They therefore would like to
-regularly conduct satisfaction surveys (e.g. NPS) using Qualtrics. They would like to avoid the manual process of 
-preparing a contact (e.g. mailing) list, importing it into Qualtrics and then scheduling a survey to be distributed
-on a routine basis (daily/weekly/quarterly).
+        # Bobby follows the instructions at
+        # https://www.qualtrics.com/support/integrations/api-integration
+        # /overview/#GeneratingAnAPIToken to generate an API Token
 
-'''
+        # Bobby then follows the instructions at
+        # https://api.qualtrics.com/docs/root-url to get their data center name
 
-# Bobby setups their User id token in the Qualtrics Admin page by following the instructions here:
-# https://api.qualtrics.com/docs/finding-qualtrics-ids
+        # Bobby then creates a Qualtrics account object by specifying a data
+        # center name and API token
+        test_data_center = test_config.DATA_CENTER
+        test_api_token = test_config.API_TOKEN
+        test_account = QualtricsAccount(test_api_token,test_data_center)
 
-# Bobby is going to create a Qualtrics Account object by specifying a data center and API token.
+        # Bobby then follows the instructions at
+        # https://api.qualtrics.com/docs/finding-qualtrics-ids to find the
+        # library/group they want to work in
 
-# Bobby goes to the Qualtrics.com Admin page to identify the Qualtrics ID associated with their library/group they want to work in
+        # Bobby then creates a new mailing list object by specifying a Qualtrics
+        # Account object, library id, mailing list name, and category name
+        test_library_id = test_config.LIBRARY_ID
+        test_mailing_list_name = test_config.MAILING_LIST_NAME
+        test_category_name = test_config.CATEGORY_NAME_FOR_FUNCTIONAL_TESTS
+        test_mailing_list = QualtricsMailingList(
+            test_account,
+            test_library_id,
+            test_mailing_list_name,
+            test_category_name
+        )
 
-# Bobby creates a new mailing list by specifying the Qualtrics Account object, mailing list name, category name *optional*
-# The mailing list object then makes an API call to get its mailing list id
+        # The mailing list object makes an API call to get its mailing list id
+        self.assertRegex(test_mailing_list.id,'ML_\w+')
 
-# Bobbby then imports their contact list into the mailing list object
-    # The mailing list object needs to be a JSON object or a JSON file
-    # The import process will need to convert the data format accordingly
-    # It will also confirm import process completed before proceeding
-    # Qualtrics documentation:
-    #       https://api.qualtrics.com/docs/create-contacts-import
-    #       https://api.qualtrics.com/docs/get-contacts-import
+        # Bobbby then imports their contact list into the mailing list object
+        # The mailing list object needs to be a JSON object or a JSON file
+        # The import process will need to convert the data format accordingly
+        # It will also confirm import process completed before proceeding
+        # Qualtrics documentation:
+        #   https://api.qualtrics.com/docs/create-contacts-import
+        #   https://api.qualtrics.com/docs/get-contacts-import
+        self.fail('Finish the test!')
 
-# Bobby then distributes the survey to the contact list by specifying the: mailing list object, email settings (to/from/subject), and ISO time to send the survey
-    # Qualtrics documentation:
-    #       https://api.qualtrics.com/docs/create-survey-distribution
-    #       Default survey expiration is 60days (we can add a feature to change this as backlog)
+        # Bobby then distributes the survey to the contact list by specifying
+        # the mailing list object, email settings (to/from/subject), and ISO
+        # time to send the survey
+        # Qualtrics documentation:
+        #   https://api.qualtrics.com/docs/create-survey-distribution
 
