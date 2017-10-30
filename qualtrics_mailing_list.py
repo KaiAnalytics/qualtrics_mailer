@@ -73,7 +73,7 @@ class QualtricsMailingList(object):
                 "percentComplete"]
 
     @property
-    def contact_list(self):
+    def contact_list(self) -> list:
         request_response = requests.request(
             "GET",
             f"https://{self.account.data_center}.qualtrics.com"
