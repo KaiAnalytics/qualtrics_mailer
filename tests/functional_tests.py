@@ -1,4 +1,4 @@
-'''
+"""
 Users would like to better understand their customer sentiments on an on-going
 basis. They therefore would like to regularly conduct satisfaction surveys (e.g.
 NPS) using Qualtrics. They would like to avoid the manual process of preparing a
@@ -17,8 +17,9 @@ Rough Design
         c) Message Object <- message id, survey object, mailing list object
         d) Importable Contact list
         e) Survey distribution object
-'''
+"""
 
+from pprint import pprint
 from unittest import TestCase
 
 from tests import test_config
@@ -27,9 +28,7 @@ from qualtrics_mailing_list import QualtricsMailingList
 
 
 class ScheduleDistributionTests(TestCase):
-
     def test_schedule_distribution_with_csv_import(self):
-
         # BOBBY'S EXPERIENCE
 
         # Bobby follows the instructions at
@@ -43,7 +42,7 @@ class ScheduleDistributionTests(TestCase):
         # center name and API token
         test_data_center = test_config.DATA_CENTER
         test_api_token = test_config.API_TOKEN
-        test_account = QualtricsAccount(test_api_token,test_data_center)
+        test_account = QualtricsAccount(test_api_token, test_data_center)
 
         # Bobby then follows the instructions at
         # https://api.qualtrics.com/docs/finding-qualtrics-ids to find the
@@ -62,20 +61,23 @@ class ScheduleDistributionTests(TestCase):
         )
 
         # The mailing list object makes an API call to get its mailing list id
-        self.assertRegex(test_mailing_list.id,'ML_\w+')
+        self.assertRegex(test_mailing_list.id, 'ML_\w+')
 
-        # Bobbby then imports their contact list into the mailing list object
-        # The mailing list object needs to be a JSON object or a JSON file
-        # The import process will need to convert the data format accordingly
-        # It will also confirm import process completed before proceeding
-        # Qualtrics documentation:
-        #   https://api.qualtrics.com/docs/create-contacts-import
-        #   https://api.qualtrics.com/docs/get-contacts-import
-        self.fail('Finish the test!')
+        # Bobby then imports their contact list into the mailing list object
+        # by passing a file pointer to a CSV file having columns for
+        # - firstName
+        # - lastName
+        # - email
+        with open('test_contact_list.csv') as fp:
+            test_mailing_list.import_contact_list_from_csv_file(fp)
+
+        # Bobby then prints out the contents of the contact list to make sure
+        # it was created as expected
+        pprint(test_mailing_list.contact_list)
 
         # Bobby then distributes the survey to the contact list by specifying
         # the mailing list object, email settings (to/from/subject), and ISO
         # time to send the survey
         # Qualtrics documentation:
         #   https://api.qualtrics.com/docs/create-survey-distribution
-
+        self.fail('Finish the test!')
