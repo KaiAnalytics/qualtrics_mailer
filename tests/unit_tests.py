@@ -170,3 +170,41 @@ class QualtricsDistributionTest(TestCase):
         )
         self.assertEqual(request_response.status_code, 200)
 
+    def test_distribution_details_property(self):
+        # initiate a QualtricsAccount object
+        test_api_token = test_config.API_TOKEN
+        test_data_center = test_config.DATA_CENTER
+        test_account = QualtricsAccount(test_api_token, test_data_center)
+
+        # initiate a QualtricsMailingList object
+        test_library_id = test_config.LIBRARY_ID
+        test_mailing_list_name = test_config.MAILING_LIST_NAME
+        test_category_name = test_config.CATEGORY_NAME_FOR_UNIT_TESTS
+        test_mailing_list = QualtricsMailingList(
+            test_account,
+            test_library_id,
+            test_mailing_list_name,
+            category_name=test_category_name,
+        )
+
+        # initiate a QualtricsDistribution object
+        test_message_id = test_config.MESSAGE_ID
+        test_survey_id = test_config.SURVEY_ID
+        test_send_date = test_config.SEND_DATE
+        test_from_name = test_config.FROM_NAME
+        test_reply_email = test_config.REPLY_EMAIL
+        test_subject = test_config.SUBJECT
+        test_distribution = QualtricsDistribution(
+            test_mailing_list,
+            test_message_id,
+            test_survey_id,
+            test_send_date,
+            test_from_name,
+            test_reply_email,
+            test_subject,
+        )
+        test_distribution_id = test_distribution.id
+
+        #self.assertTrue(hasattr(test_distribution, "details"))
+
+        self.assertRegex(test_distribution.details["result"]["id"], 'EMD_\w+')

@@ -25,6 +25,7 @@ from unittest import TestCase
 from tests import test_config
 from qualtrics_account import QualtricsAccount
 from qualtrics_mailing_list import QualtricsMailingList
+from qualtrics_distribution import QualtricsDistribution
 
 
 class ScheduleDistributionTests(TestCase):
@@ -75,9 +76,33 @@ class ScheduleDistributionTests(TestCase):
         # it was created as expected
         pprint(test_mailing_list.contact_list)
 
-        # Bobby then distributes the survey to the contact list by specifying
+        # Bobby then follows the instructions at
+        # https://api.qualtrics.com/docs/finding-qualtrics-ids to find a survey id
+
+        # Bobby then follows the instructions at
+        # https://api.qualtrics.com/docs/finding-qualtrics-ids to find a message id
+
+        # Bobby then creates a distribution object by specifying
         # the mailing list object, email settings (to/subject/ and from is defaulted to "noreply@qemailserver.com"), and ISO
-        # time to send the survey
-        # Qualtrics documentation:
-        #   https://api.qualtrics.com/docs/create-survey-distribution
-        self.fail('Finish the test!')
+        # time to send the survey.
+        # ISO time format can be found here: https://api.qualtrics.com/v3/docs/dates-and-times
+        test_message_id = test_config.MESSAGE_ID
+        test_survey_id = test_config.SURVEY_ID
+        test_send_date = test_config.SEND_DATE
+        test_from_name = test_config.FROM_NAME
+        test_reply_email = test_config.REPLY_EMAIL
+        test_subject = test_config.SUBJECT
+        test_distribution = QualtricsDistribution(
+            test_mailing_list,
+            test_message_id,
+            test_survey_id,
+            test_send_date,
+            test_from_name,
+            test_reply_email,
+            test_subject,
+        )
+
+        # Bobby then prints out the contents of the distribution to make sure it was created as expected
+        pprint(test_distribution.details)
+
+        # Bobby logs into Qualtics.com and verifies the survey project is setup correctly

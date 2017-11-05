@@ -55,3 +55,15 @@ class QualtricsDistribution(object):
             }
         )
         self.id = request_response.json()["result"]["id"]
+
+    @property
+    def details(self) -> dict:
+        request_response = requests.request(
+            "GET",
+            f"https://{self.mailing_list.account.data_center}.qualtrics.com"
+            f"/API/v3/distributions/{self.id}?surveyId={self.survey_id}",
+            headers={
+                "x-api-token": self.mailing_list.account.api_token
+            },
+        )
+        return request_response.json()
