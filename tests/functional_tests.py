@@ -68,7 +68,7 @@ class ScheduleDistributionTests(TestCase):
         # - firstName
         # - lastName
         # - email
-        with open('test_contact_list.csv') as fp:
+        with open('tests/test_contact_list.csv') as fp:
             test_mailing_list.import_contact_list_from_csv_file(fp)
 
         # Bobby then prints out the contents of the contact list to make sure
@@ -76,7 +76,7 @@ class ScheduleDistributionTests(TestCase):
         pprint(test_mailing_list.contact_list)
 
         # Bobby then distributes the survey to the contact list by specifying
-        # the mailing list object, email settings (to/from/subject), and ISO
+        # the mailing list object, email settings (to/subject/ and from is defaulted to "noreply@qemailserver.com"), and ISO
         # time to send the survey
         # Qualtrics documentation:
         #   https://api.qualtrics.com/docs/create-survey-distribution

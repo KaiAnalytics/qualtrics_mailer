@@ -1,4 +1,4 @@
-firstName,lastName,email
-first,user1,first@user.test.please.ignore
-second,user2,second@user2.test.please.ignore
-third,user3,third@user3.test.please.ignore
+firstName,lastName,email,externalReference
+first,user1,first@user.test.please.ignore,12345
+second,user2,second@user2.test.please.ignore,23456
+third,user3,third@user3.test.please.ignore,45667
