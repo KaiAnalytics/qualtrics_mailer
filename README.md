@@ -24,5 +24,5 @@ python -m unittest tests/unit_tests.py
 MIT License, See [LICENSE](LICENSE)
 
 ## Authors
-* **Isaiah Lankham** (https://github.com/ilankham)
-* **Kai Chang** (https://github.com/kaiichang)
+* [ilankham](https://github.com/ilankham)
+* [kaiichang](https://github.com/kaiichang)
