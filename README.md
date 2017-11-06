@@ -9,6 +9,8 @@ A package for importing contact lists and distributing pre-built surveys in Qual
 
 This package requires Python 3.6 or greater, along with the modules specified in [requirements.txt](requirements.txt)
 
+This package requires a paid Qualtrics account along with their Qualtrics API add-on. To purchase a Qualtrics account and/or an Qualtrics API add-on, please contact their sales team at: [Qualtrics Support](https://www.qualtrics.com/contact/)
+
 ## Running the tests
 
 To use the provided functional and unit tests, follow the instructions in [tests/example_test_config.py](tests/example_test_config.py), and then run the tests as follows:
