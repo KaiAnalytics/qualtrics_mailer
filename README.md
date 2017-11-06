@@ -5,6 +5,8 @@ A package for importing contact lists and distributing pre-built surveys in Qual
 
 ### Prerequisites
 
+This package requires Python 3.6 or greater, along with the modules specified in [requirements.txt](requirements.txt)
+
 ## Running the tests
 
 To use the provided functional and unit tests, follow the instructions in [tests/example_test_config.py](tests/example_test_config.py), and then run the tests as follows:
