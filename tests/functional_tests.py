@@ -1,3 +1,31 @@
+"""Create functional tests for project using unittest module
+
+This module depends on the file test/test_config.py to define the following
+module-level constants, which are used in live Qualtrics API v3 calls to create
+test mailing lists and survey distributions:
+
+- API_TOKEN, a Qualtrics API v3 token; see https://www.qualtrics.com/support/
+    integrations/api-integration/overview/#GeneratingAnAPIToken
+- DATA_CENTER, a Qualtrics account data center specific to the account
+    associated with the API token; see https://api.qualtrics.com/docs/root-url
+- LIBRARY_ID, a Qualtrics Library/Group id specific to the account associated
+    with the API token; see https://api.qualtrics.com/docs/finding-qualtrics-ids
+- MAILING_LIST_NAME, the name for the test mailing list being created
+- CATEGORY_NAME_FOR_FUNCTIONAL_TESTS, the category name for the test mailing
+    list being created
+- MESSAGE_ID, a Qualtrics message id specific to the account associated with
+    the API token; see https://api.qualtrics.com/docs/finding-qualtrics-ids
+- SURVEY_ID, a Qualtrics survey id specific to the account associated with
+    the API token; see https://api.qualtrics.com/docs/finding-qualtrics-ids
+- SEND_DATE, the send datetime for the test survey distribution being created in
+    ISO 8601 format; see https://api.qualtrics.com/docs/dates-and-times
+- FROM_NAME, the from name for the test survey distribution being created
+- REPLY_EMAIL, the reply-to email address for the test survey distribution being
+    created
+- SUBJECT, the email subject for the test survey distribution being created
+
+"""
+
 from pprint import pprint
 from unittest import TestCase
 
@@ -44,7 +72,7 @@ class ScheduleDistributionTests(TestCase):
         self.assertRegex(test_mailing_list.id, 'ML_\w+')
 
         # Bobby then imports their contact list into the mailing list object
-        # by passing a file pointer to a CSV file having columns for
+        # by passing a file pointer to a CSV file having columns
         # - firstName
         # - lastName
         # - email
@@ -56,15 +84,16 @@ class ScheduleDistributionTests(TestCase):
         pprint(test_mailing_list.contact_list)
 
         # Bobby then follows the instructions at
-        # https://api.qualtrics.com/docs/finding-qualtrics-ids to find a survey id
+        # https://api.qualtrics.com/docs/finding-qualtrics-ids to determine the
+        # id for a survey they would like to distribute
 
         # Bobby then follows the instructions at
-        # https://api.qualtrics.com/docs/finding-qualtrics-ids to find a message id
+        # https://api.qualtrics.com/docs/finding-qualtrics-ids to determine the
+        # id for a message they would like to use to distribute the survey
 
-        # Bobby then creates a distribution object by specifying
-        # the mailing list object, email settings (to/subject/ and from is
-        # defaulted to "noreply@qemailserver.com"), and ISO time to send the survey.
-        # ISO time format can be found here: https://api.qualtrics.com/v3/docs/dates-and-times
+        # Bobby then creates a distribution object by specifying a mailing list
+        # object, a message id, survey id, and email settings for send datetime
+        # is ISO 8601 format, from name, reply email address, and subject
         test_message_id = test_config.MESSAGE_ID
         test_survey_id = test_config.SURVEY_ID
         test_send_date = test_config.SEND_DATE
@@ -81,7 +110,9 @@ class ScheduleDistributionTests(TestCase):
             test_subject,
         )
 
-        # Bobby then prints out the contents of the distribution to make sure it was created as expected
+        # Bobby then prints out the contents of the distribution to make sure it
+        # was created as expected
         pprint(test_distribution.details)
 
-        # Bobby logs into Qualtics.com and verifies the survey project is setup correctly
+        # Bobby can then log into Qualtrics.com and verify the survey project
+        # was created as specified using

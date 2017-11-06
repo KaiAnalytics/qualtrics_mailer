@@ -1,9 +1,10 @@
-"""Creates a class for interfacing with Qualtrics API v3
+"""Creates a mailing-list class for interfacing with Qualtrics API v3
 
-This module creates a class that has methods for creating a mailing list and
-    for exporting a JSON object into a Qualtrics mailing list from a csv file
+This module creates a class for encapsulating a Qualtrics Mailing List based
+upon a Qualtrics Account object, Qualtrics Library/Group id, and settings for
+mailing-list name and category name
+
 """
-
 
 import json
 
@@ -14,7 +15,7 @@ from qualtrics_account import QualtricsAccount
 
 
 class QualtricsMailingList(object):
-    """Class for interfacing with Qualtics API v3"""
+    """Mailing-list Class for interfacing with Qualtrics API v3"""
     def __init__(
             self,
             account: QualtricsAccount,
@@ -22,20 +23,23 @@ class QualtricsMailingList(object):
             mailing_list_name: str,
             category_name: str
     ):
-        """Initializes a mailing list object
+        """Initializes a Qualtrics mailing-list object
 
-        Arges:
-            account: Consists of attributes inherited from the Qualtrics Account class
-            library_id: It indicates the ID of the library (aka.Qualtrics "working directory")
-                where  mailing lists is saved
-            mailing_list_name: The name for a mailing list
-            category_name: Tag/Group in which to create the new mailing list
+        Args:
+            account: a QualtricsAccount object
+            library_id: a Qualtrics Library/Group id, which acts similarly to a
+                "working directory"; see https://api.qualtrics.com/docs/
+                finding-qualtrics-ids
+            mailing_list_name: the name for the mailing list being created
+            category_name: the category name for the mailing list being created,
+                which acts similarly to a "tag" for the mailing list
         """
         self.account = account
         self.library_id = library_id
         self.mailing_list_name = mailing_list_name
         self.category_name = category_name
 
+        # make Qualtrics API v3 call to create mailing list
         request_response = requests.request(
             "POST",
             f"https://{self.account.data_center}.qualtrics.com"
@@ -50,23 +54,32 @@ class QualtricsMailingList(object):
                 "x-api-token": self.account.api_token,
             },
         )
+
+        # extract mailing list id from HTTP response
         self.id = request_response.json()["result"]["id"]
 
-    def import_contact_list_from_csv_file(self, fp):
-        """Imports a contact list from csv file into a mailing list using a Qualtrics v3 API call.
-        This import method converts the csv file into a JSON object.
-        This import method will confirm the process completed before proceeding
+    def import_contact_list_from_csv_file(self, fp) -> None:
+        """Imports a contact list from a csv file using a Qualtrics v3 API call.
 
         Args:
-            fp: pointer to the csv object that is ready to read from
+            fp: pointer to csv file or file-like object having a non-empty
+                subset of the following column headers in the next line to be
+                read and corresponding data in all following lines:
+                - id
+                - firstName
+                - lastName
+                - email
+                - language
+                - unsubscribed
+                - externalReference
+                see https://api.qualtrics.com/docs/create-contacts-import
 
-        Qualtrics documentation:
-            https://api.qualtrics.com/docs/create-contacts-import
-            https://api.qualtrics.com/docs/get-contacts-import
         """
+
+        # convert csv file contents to JSON records format
         contact_list = json.loads(pd.read_csv(fp).to_json(orient='records'))
 
-        # noinspection SpellCheckingInspection
+        # make Qualtrics API v3 call to upload contact list
         request_response = requests.request(
             "POST",
             f"https://{self.account.data_center}.qualtrics.com"
@@ -77,11 +90,11 @@ class QualtricsMailingList(object):
                 "x-api-token": self.account.api_token,
             },
         )
-        progress_id = request_response.json()["result"]["id"]
 
+        # check upload progress until complete
+        progress_id = request_response.json()["result"]["id"]
         request_check_progress = 0
         while request_check_progress < 100:
-            # noinspection SpellCheckingInspection
             request_response = requests.request(
                 "GET",
                 f"https://{self.account.data_center}.qualtrics.com"
@@ -95,7 +108,7 @@ class QualtricsMailingList(object):
 
     @property
     def contact_list(self) -> dict:
-        """Returns the mailing list's contact list using a Qualtrics API v3 call"""
+        """Returns mailing list's contact list without caching"""
         request_response = requests.request(
             "GET",
             f"https://{self.account.data_center}.qualtrics.com"

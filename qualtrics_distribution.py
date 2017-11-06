@@ -1,6 +1,10 @@
-"""Creates a class for interfacing with Qualtrics API v3
+"""Creates a survey-distribution class for interfacing with Qualtrics API v3
 
-This module creates a class for distributing a survey to a mailing list
+This module creates a class for encapsulating a Qualtrics Survey Distribution
+based upon a Qualtrics Mailing List object, Qualtrics Message id, Qualtrics
+Survey id, and email settings for send date, from name, reply-to email address,
+subject, and from email address, which defaults to "noreply@qemailserver.com"
+
 """
 
 
@@ -10,7 +14,7 @@ from qualtrics_mailing_list import QualtricsMailingList
 
 
 class QualtricsDistribution(object):
-    """Class for interfacing with Qualtics API v3"""
+    """Survey-Distribution Class for interfacing with Qualtrics API v3"""
     def __init__(
         self,
         mailing_list: QualtricsMailingList,
@@ -23,22 +27,28 @@ class QualtricsDistribution(object):
         *,
         from_email: str = "noreply@qemailserver.com",
     ):
-        """Initializes a distribution object
+        """Initializes a Qualtrics survey-distribution object
 
         Args:
-            mailing_list: Inherits objects from the QualtricsMailingList class
-            message_id: Contains information about the body of the email message that is sent to survey recipients.
-                Typically, the message is saved in the user's library.
-            survey_id: Identifies the survey
-            send_date: The date and time the survey will be sent (in ISO 8601 format).
-                An example sendDate is 2017-08-07T21:45:00Z.
-                Note that this date and time could be in the future if the email distribution is scheduled to send after a delay.
-            from_name: The name of the sender. Typically the account owner's name, for instance, John Doe.
-            reply_email: The email address of the sender of the email, for example, john@example.com.
-                This is the address that will receive a message should the recipient of the email choose reply.
-            subject: The email's subject line.
-            from_email: The email address of the sender. The default is noreply@qemailserver.com.
-                Note that additional setup may be required with Qualtrics and your IT team to use emails with custom domains.
+            mailing_list: a QualtricsMailingList object with initialized
+                Qualtrics Account sub-object
+            message_id: a Qualtrics message id; see https://api.qualtrics.com/
+                docs/finding-qualtrics-ids
+            survey_id: a Qualtrics survey id; see https://api.qualtrics.com/
+                docs/finding-qualtrics-ids
+            send_date: the send datetime for the survey distribution being
+                created in ISO 8601 format; see https://api.qualtrics.com/
+                docs/dates-and-times
+            from_name: the from name for the survey distribution being created
+            reply_email: the reply-to email address for the survey distribution
+                being created
+            subject: the email subject for the survey distribution being created
+            from_email: the from name for the survey distribution being created,
+                defaulting to the Qualtrics-supplied noreply@qemailserver.com;
+                see https://www.qualtrics.com/support/survey-platform/
+                distributions-module/email-distribution/emails/
+                using-a-custom-from-address/
+
         """
         self.mailing_list = mailing_list
         self.message_id = message_id
@@ -49,7 +59,7 @@ class QualtricsDistribution(object):
         self.subject = subject
         self.from_email = from_email
 
-        # verify distribution exists
+        # make Qualtrics API v3 call to create survey distribution
         request_response = requests.request(
             "POST",
             f"https://{self.mailing_list.account.data_center}.qualtrics.com"
@@ -78,11 +88,13 @@ class QualtricsDistribution(object):
                 "sendDate": self.send_date,
             }
         )
+
+        # extract distribution id from HTTP response
         self.id = request_response.json()["result"]["id"]
 
     @property
     def details(self) -> dict:
-        """Returns the distribution using a Qualtrics API v3 call"""
+        """Returns survey-distribution details without caching"""
         request_response = requests.request(
             "GET",
             f"https://{self.mailing_list.account.data_center}.qualtrics.com"
