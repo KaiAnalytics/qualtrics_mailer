@@ -1,24 +1,3 @@
-"""
-Users would like to better understand their customer sentiments on an on-going
-basis. They therefore would like to regularly conduct satisfaction surveys (e.g.
-NPS) using Qualtrics. They would like to avoid the manual process of preparing a
-contact (e.g. mailing) list, importing it into Qualtrics and then scheduling a
-survey to be distributed on a routine basis (daily/weekly/quarterly).
-
-Rough Design
-
-    1. hard coded config file with things like API urls
-
-    2. Files that only contain user parameters, like API token
-
-    3.  a) Survey Object <- data center, survey ID
-        b) Mailing List Object <- data center, library id (group id),
-           mailing list name, category name (folder name) *optional*
-        c) Message Object <- message id, survey object, mailing list object
-        d) Importable Contact list
-        e) Survey distribution object
-"""
-
 from pprint import pprint
 from unittest import TestCase
 
@@ -83,8 +62,8 @@ class ScheduleDistributionTests(TestCase):
         # https://api.qualtrics.com/docs/finding-qualtrics-ids to find a message id
 
         # Bobby then creates a distribution object by specifying
-        # the mailing list object, email settings (to/subject/ and from is defaulted to "noreply@qemailserver.com"), and ISO
-        # time to send the survey.
+        # the mailing list object, email settings (to/subject/ and from is
+        # defaulted to "noreply@qemailserver.com"), and ISO time to send the survey.
         # ISO time format can be found here: https://api.qualtrics.com/v3/docs/dates-and-times
         test_message_id = test_config.MESSAGE_ID
         test_survey_id = test_config.SURVEY_ID

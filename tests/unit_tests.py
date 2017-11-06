@@ -138,7 +138,6 @@ class QualtricsDistributionTest(TestCase):
             test_mailing_list_name,
             category_name=test_category_name,
         )
-        test_mailing_list_id = test_mailing_list.id
 
         # initiate a QualtricsDistribution object
         test_message_id = test_config.MESSAGE_ID
@@ -203,8 +202,5 @@ class QualtricsDistributionTest(TestCase):
             test_reply_email,
             test_subject,
         )
-        test_distribution_id = test_distribution.id
-
-        #self.assertTrue(hasattr(test_distribution, "details"))
 
         self.assertRegex(test_distribution.details["result"]["id"], 'EMD_\w+')
