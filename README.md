@@ -34,8 +34,8 @@ and
 python -m unittest tests/unit_tests.py
 ```
 
-## License(s)
-MIT License, See [LICENSE](LICENSE)
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details MIT License
 
 ## Authors
 * [ilankham](https://github.com/ilankham)
