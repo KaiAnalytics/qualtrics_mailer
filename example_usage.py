@@ -27,7 +27,7 @@ mailing_list = QualtricsMailingList(
 )
 
 # import example contact list from test folder
-with open('tests/test_contact_list.csv') as fp:
+with open('example_mailing_list.csv') as fp:
     mailing_list.import_contact_list_from_csv_file(fp)
 
 # print mailing list's contact list to confirm proper import
