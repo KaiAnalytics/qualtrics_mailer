@@ -1,3 +1,5 @@
+![Python 3.6](https://img.shields.io/badge/python-3.6-brightgreen.svg)
+
 # qualtrics-mailer
 A package for importing contact lists and distributing pre-built surveys in Qualtrics
 
