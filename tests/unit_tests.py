@@ -189,7 +189,6 @@ class QualtricsDistributionTest(TestCase):
             test_subject,
         )
         test_distribution_id = test_distribution.id
-        print(test_distribution.id)
 
         # verify distribution exists
         request_response = requests.request(
@@ -240,4 +239,4 @@ class QualtricsDistributionTest(TestCase):
 
         # verify distribution list was successfully created and had properly
         # formatted id accessible from details property
-        self.assertRegex(test_distribution.details["result"]["id"], 'EMD_\w+')
+        self.assertRegex(test_distribution.details["id"], 'EMD_\w+')

@@ -103,4 +103,4 @@ class QualtricsDistribution(object):
                 "x-api-token": self.mailing_list.account.api_token
             },
         )
-        return request_response.json()
+        return request_response.json()['result']
