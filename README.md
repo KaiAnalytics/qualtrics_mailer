@@ -5,6 +5,10 @@ A package for importing contact lists and distributing pre-built surveys in Qual
 
 ## Getting Started
 
+1. Download this Repo
+2. Prepare a csv file with your contact list using the [ExampleMailingList.csv](ExampleMailingList.csv)
+3. 
+
 ### Prerequisites
 
 This package requires Python 3.6 or greater, along with the modules specified in [requirements.txt](requirements.txt)
