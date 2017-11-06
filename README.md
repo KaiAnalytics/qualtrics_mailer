@@ -5,15 +5,23 @@ A package for importing contact lists and distributing pre-built surveys in Qual
 
 ## Getting Started
 
-1. Download this Repo
-2. Prepare a csv file with your contact list using the [ExampleMailingList.csv](ExampleMailingList.csv)
-3. Review the [example_usage.py](example_usage.py) file and edit the file based on your own Qualtrics credentials and IDs. Documentation for the Qualtrics API can be found here: [Qualtrics API](https://api.qualtrics.com/docs/overview)
+1. Download this repo.
+2. Prepare a CSV file with your contact list using the  file [example_mailing_list.csv](example_mailing_list.csv) as a template; note that column headers must be formatted exactly as specified at [https://api.qualtrics.com/docs/update-contact](https://api.qualtrics.com/docs/update-contact).
+3. Update [example_usage.py](example_usage.py) with a Qualtrics API token and object IDs.
+
+Instructions for generating an API token can be found at
+[https://www.qualtrics.com/support/integrations/api-integration/overview/](https://www.qualtrics.com/support/integrations/api-integration/overview/)
+
+Instructions for finding Qualtrics objects ids can be found at
+[https://api.qualtrics.com/docs/finding-qualtrics-ids](https://api.qualtrics.com/docs/finding-qualtrics-ids)
+
+Additional documentation for the Qualtrics API can be found at [https://api.qualtrics.com/docs/overview](https://api.qualtrics.com/docs/overview)
 
 ### Prerequisites
 
-This package requires Python 3.6 or greater, along with the modules specified in [requirements.txt](requirements.txt)
+This package requires Python 3.6 or greater, along with the Python modules specified in [requirements.txt](requirements.txt).
 
-This package requires a paid Qualtrics account along with their Qualtrics API add-on. To purchase a Qualtrics account and/or an Qualtrics API add-on, please contact their sales team at: [Qualtrics Support](https://www.qualtrics.com/contact/)
+This package requires a paid Qualtrics account with API add-on. Details about purchasing a Qualtrics account and/or API add-on can obtained by contacting Qualtrics at [https://www.qualtrics.com/contact/](https://www.qualtrics.com/contact/)
 
 ## Running the tests
 
@@ -32,3 +40,7 @@ MIT License, See [LICENSE](LICENSE)
 ## Authors
 * [ilankham](https://github.com/ilankham)
 * [kaiichang](https://github.com/kaiichang)
+
+## Disclaimer
+
+This project is in no way affiliated with Qualtrics.
