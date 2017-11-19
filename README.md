@@ -1,11 +1,15 @@
-![Python 3.6](https://img.shields.io/badge/python-3.6-brightgreen.svg)
+[![Python 3.6](https://img.shields.io/badge/python-3.6-brightgreen.svg)](#prerequisites)  [![license](https://img.shields.io/badge/license-MIT%20License-blue.svg)](LICENSE)
+
 
 # qualtrics-mailer
-A package for importing contact lists and distributing pre-built surveys in Qualtrics
+A package for distributing pre-built surveys in Qualtrics
 
 ## Getting Started
 
-1. Download this repo.
+1. Download this repo or install from PyPI using
+```
+pip install qualtrics-mailer
+```
 2. Prepare a CSV file with your contact list using the  file [example_mailing_list.csv](qualtrics_mailer/example_mailing_list.csv) as a template; note that column headers must be formatted exactly as specified at [https://api.qualtrics.com/docs/update-contact](https://api.qualtrics.com/docs/update-contact).
 3. Update [example_usage.py](qualtrics_mailer/example_usage.py) with a Qualtrics API token and object IDs.
 
@@ -25,7 +29,7 @@ This package requires a paid Qualtrics account with API add-on. Details about pu
 
 ## Running the tests
 
-To use the provided functional and unit tests, follow the instructions in [tests/example_test_config.py](tests/example_test_config.py), and then run the tests as follows:
+To run the provided functional and unit tests, follow the instructions in [tests/example_test_config.py](tests/example_test_config.py), and then run the tests from the root folder as follows:
 ```
 python -m unittest tests/functional_tests.py
 ```

@@ -1,4 +1,4 @@
-"""Create functional tests for project using unittest module
+"""Create unit tests for project using unittest module
 
 This module depends on the file test/test_config.py to define the following
 module-level constants, which are used in live Qualtrics API v3 calls to create
@@ -30,9 +30,11 @@ from io import StringIO
 from unittest import TestCase
 
 import requests
-from qualtrics_account import QualtricsAccount
-from qualtrics_distribution import QualtricsDistribution
-from qualtrics_mailing_list import QualtricsMailingList
+from qualtrics_mailer import (
+    QualtricsAccount,
+    QualtricsDistribution,
+    QualtricsMailingList
+)
 from tests import test_config
 
 

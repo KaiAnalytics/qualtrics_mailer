@@ -29,7 +29,11 @@ test mailing lists and survey distributions:
 from pprint import pprint
 from unittest import TestCase
 
-from qualtrics_mailer import QualtricsAccount, QualtricsDistribution, QualtricsMailingList
+from qualtrics_mailer import (
+    QualtricsAccount,
+    QualtricsDistribution,
+    QualtricsMailingList
+)
 from tests import test_config
 
 
