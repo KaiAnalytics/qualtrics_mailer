@@ -29,10 +29,8 @@ test mailing lists and survey distributions:
 from pprint import pprint
 from unittest import TestCase
 
+from qualtrics_mailer import QualtricsAccount, QualtricsDistribution, QualtricsMailingList
 from tests import test_config
-from qualtrics_account import QualtricsAccount
-from qualtrics_mailing_list import QualtricsMailingList
-from qualtrics_distribution import QualtricsDistribution
 
 
 class ScheduleDistributionTests(TestCase):

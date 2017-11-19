@@ -10,8 +10,7 @@ import json
 
 import pandas as pd
 import requests
-
-from qualtrics_account import QualtricsAccount
+from .qualtrics_account import QualtricsAccount
 
 
 class QualtricsMailingList(object):

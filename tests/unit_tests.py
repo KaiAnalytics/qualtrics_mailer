@@ -30,11 +30,10 @@ from io import StringIO
 from unittest import TestCase
 
 import requests
-
-from tests import test_config
 from qualtrics_account import QualtricsAccount
-from qualtrics_mailing_list import QualtricsMailingList
 from qualtrics_distribution import QualtricsDistribution
+from qualtrics_mailing_list import QualtricsMailingList
+from tests import test_config
 
 
 class QualtricsAccountTests(TestCase):

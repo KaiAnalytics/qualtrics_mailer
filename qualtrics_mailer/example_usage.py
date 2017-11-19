@@ -2,9 +2,8 @@ from datetime import datetime
 from pprint import pprint
 
 from qualtrics_account import QualtricsAccount
-from qualtrics_mailing_list import QualtricsMailingList
 from qualtrics_distribution import QualtricsDistribution
-
+from qualtrics_mailing_list import QualtricsMailingList
 
 # set data center and API token
 api_token = '[your account API token]'

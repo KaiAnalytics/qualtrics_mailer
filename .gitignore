@@ -1,6 +1,8 @@
 .idea/
-token.ini
+/token.ini
+/dist/
 test_config.py
+.ipynb_checkpoints/
 
 # Everything below was added by GitHub
 

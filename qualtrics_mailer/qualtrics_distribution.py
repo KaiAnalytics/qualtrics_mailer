@@ -10,7 +10,7 @@ subject, and from email address, which defaults to "noreply@qemailserver.com"
 
 import requests
 
-from qualtrics_mailing_list import QualtricsMailingList
+from .qualtrics_mailing_list import QualtricsMailingList
 
 
 class QualtricsDistribution(object):

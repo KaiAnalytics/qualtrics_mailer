@@ -6,8 +6,8 @@ A package for importing contact lists and distributing pre-built surveys in Qual
 ## Getting Started
 
 1. Download this repo.
-2. Prepare a CSV file with your contact list using the  file [example_mailing_list.csv](example_mailing_list.csv) as a template; note that column headers must be formatted exactly as specified at [https://api.qualtrics.com/docs/update-contact](https://api.qualtrics.com/docs/update-contact).
-3. Update [example_usage.py](example_usage.py) with a Qualtrics API token and object IDs.
+2. Prepare a CSV file with your contact list using the  file [example_mailing_list.csv](qualtrics_mailer/example_mailing_list.csv) as a template; note that column headers must be formatted exactly as specified at [https://api.qualtrics.com/docs/update-contact](https://api.qualtrics.com/docs/update-contact).
+3. Update [example_usage.py](qualtrics_mailer/example_usage.py) with a Qualtrics API token and object IDs.
 
 Instructions for generating an API token can be found at
 [https://www.qualtrics.com/support/integrations/api-integration/overview/](https://www.qualtrics.com/support/integrations/api-integration/overview/)
