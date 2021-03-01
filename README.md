@@ -2,7 +2,7 @@
 
 
 # qualtrics-mailer
-A package for distributing pre-built surveys in Qualtrics
+A package for distributing pre-built surveys in Qualtrics. Please note this project is no longer actively maintained.
 
 ## Getting Started
 
