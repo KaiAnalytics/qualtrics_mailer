@@ -2,7 +2,7 @@
 
 
 # qualtrics-mailer
-A package for distributing pre-built surveys in Qualtrics. Please note this project is no longer actively maintained.
+A package for distributing pre-built surveys in Qualtrics. Please note this project is no longer actively maintained, however if you need assistance implementing this for your organzation, please reach out to us at hello@kaianalytics.com or visit www.kaianalaytics.com for more information. Thank you.
 
 ## Getting Started
 
