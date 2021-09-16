@@ -2,7 +2,7 @@
 
 
 # qualtrics-mailer
-A package for distributing pre-built surveys in Qualtrics. Please note this project is no longer actively maintained, however if you need assistance implementing this for your organzation, please reach out to us at hello@kaianalytics.com or visit www.kaianalaytics.com for more information. Thank you.
+A package for distributing pre-built surveys in Qualtrics. While this tool uses Python 3.6, it should work on the latest version of Python and Qualtrics API. Please reach out ot us at info@kaianalytics.com if you have any questions or require assistance. Thank you.
 
 ## Getting Started
 
